@@ -1,0 +1,1696 @@
+[
+  {
+    "id": "TC001",
+    "title": "Signup via welcome screen routes user to profile setup",
+    "description": "Verifies a new user can start from welcome, sign up with email/password, and is taken into onboarding.",
+    "category": "User Authentication",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /welcome"
+      },
+      {
+        "type": "action",
+        "description": "Click the sign up option"
+      },
+      {
+        "type": "action",
+        "description": "Fill New Test User into the full name field"
+      },
+      {
+        "type": "action",
+        "description": "Fill newuser+auth1@example.com into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill ValidPassword123! into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the signup form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the profile setup screen"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Login routes user into the app when credentials are valid",
+    "description": "Verifies a returning user can log in with valid credentials and is routed to the app entry destination.",
+    "category": "User Authentication",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /welcome"
+      },
+      {
+        "type": "action",
+        "description": "Click the login option"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the home screen or profile setup screen"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Login shows invalid credentials error for wrong password",
+    "description": "Verifies the login form surfaces an authentication error when credentials are incorrect.",
+    "category": "User Authentication",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill invalid.user@example.com into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill WrongPassword123! into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an invalid credentials error is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Signup navigation path works from welcome to signup screen",
+    "description": "Verifies the welcome screen can route the user to the signup screen reliably.",
+    "category": "User Authentication",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /welcome"
+      },
+      {
+        "type": "action",
+        "description": "Click the sign up option"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the signup form is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "OTP flow: request OTP from signup and navigate to OTP screen",
+    "description": "Verifies a user can enter a phone number for OTP and proceed to the OTP entry screen.",
+    "category": "User Authentication",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /signup"
+      },
+      {
+        "type": "action",
+        "description": "Fill a valid phone number into the phone number field"
+      },
+      {
+        "type": "action",
+        "description": "Send the OTP"
+      },
+      {
+        "type": "action",
+        "description": "Wait for the OTP entry screen to load"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the OTP code entry form is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "OTP verification shows error for invalid or expired code",
+    "description": "Verifies OTP verification fails with an on-screen error when an invalid code is entered.",
+    "category": "User Authentication",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /otp"
+      },
+      {
+        "type": "action",
+        "description": "Fill 000000 into the OTP code field"
+      },
+      {
+        "type": "action",
+        "description": "Verify the OTP code"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an invalid or expired code error is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "Login form validation prevents submit when required fields are empty",
+    "description": "Verifies required field validation appears and blocks progress when attempting to submit an empty login form.",
+    "category": "User Authentication",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation errors are visible for required fields"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Ride Search: Search rides by source, destination, and date and view results",
+    "description": "Verifies a user can search with source, destination, and date and sees ride cards in the results.",
+    "category": "Ride Search",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /search"
+      },
+      {
+        "type": "action",
+        "description": "Type a valid source location into the source field and select a suggestion from autocomplete"
+      },
+      {
+        "type": "action",
+        "description": "Type a valid destination location into the destination field and select a suggestion from autocomplete"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid date from the calendar"
+      },
+      {
+        "type": "action",
+        "description": "Submit the ride search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a list of ride cards is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Ride Search: Open ride details from a search result",
+    "description": "Verifies a user can perform a search and navigate to a ride details view by selecting a ride card.",
+    "category": "Ride Search",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /search"
+      },
+      {
+        "type": "action",
+        "description": "Type a valid source location into the source field and select a suggestion from autocomplete"
+      },
+      {
+        "type": "action",
+        "description": "Type a valid destination location into the destination field and select a suggestion from autocomplete"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid date from the calendar"
+      },
+      {
+        "type": "action",
+        "description": "Submit the ride search"
+      },
+      {
+        "type": "action",
+        "description": "Tap a ride card in the results list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify ride details are displayed including driver info, price, and available seats"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Ride Search: Empty state shown for incomplete or mismatched locations",
+    "description": "Verifies submitting a search with incomplete or mismatched locations shows an empty state with suggested actions.",
+    "category": "Ride Search",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /search"
+      },
+      {
+        "type": "action",
+        "description": "Type an incomplete or nonspecific source location into the source field without selecting an autocomplete suggestion"
+      },
+      {
+        "type": "action",
+        "description": "Type an incomplete or nonspecific destination location into the destination field without selecting an autocomplete suggestion"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid date from the calendar"
+      },
+      {
+        "type": "action",
+        "description": "Submit the ride search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state is displayed indicating no rides were found with suggested next steps"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Ride Search: Prevent search when required fields are missing",
+    "description": "Verifies the search cannot be submitted when required fields are missing and validation feedback is shown.",
+    "category": "Ride Search",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /search"
+      },
+      {
+        "type": "action",
+        "description": "Type a valid source location into the source field and select a suggestion from autocomplete"
+      },
+      {
+        "type": "action",
+        "description": "Leave the destination field empty"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid date from the calendar"
+      },
+      {
+        "type": "action",
+        "description": "Submit the ride search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a validation error is visible for the missing destination and results are not shown"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Ride Search: Change date and re-run search updates results state",
+    "description": "Verifies changing the date and submitting search again refreshes the results state accordingly.",
+    "category": "Ride Search",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_USER}} into the email field"
+      },
+      {
+        "type": "action",
+        "description": "Fill {{LOGIN_PASSWORD}} into the password field"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /search"
+      },
+      {
+        "type": "action",
+        "description": "Type a valid source location into the source field and select a suggestion from autocomplete"
+      },
+      {
+        "type": "action",
+        "description": "Type a valid destination location into the destination field and select a suggestion from autocomplete"
+      },
+      {
+        "type": "action",
+        "description": "Select a valid date from the calendar"
+      },
+      {
+        "type": "action",
+        "description": "Submit the ride search"
+      },
+      {
+        "type": "action",
+        "description": "Select a different valid date from the calendar"
+      },
+      {
+        "type": "action",
+        "description": "Submit the ride search"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the results state updates after the second search submission"
+      }
+    ]
+  },
+  {
+    "id": "TC013",
+    "title": "Load My Bookings and view upcoming bookings",
+    "description": "Verifies that an authenticated passenger can open My Bookings and see the upcoming list content area.",
+    "category": "My Bookings",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /my-bookings"
+      },
+      {
+        "type": "action",
+        "description": "Select the upcoming bookings tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify upcoming bookings are displayed or an empty state is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC014",
+    "title": "Load My Bookings and view past bookings",
+    "description": "Verifies that an authenticated passenger can switch to the past bookings list.",
+    "category": "My Bookings",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /my-bookings"
+      },
+      {
+        "type": "action",
+        "description": "Select the past bookings tab"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify past bookings are displayed or an empty state is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC015",
+    "title": "Open booking details from a booking card",
+    "description": "Verifies that tapping a booking from My Bookings opens its booking detail page with core details visible.",
+    "category": "My Bookings",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /my-bookings"
+      },
+      {
+        "type": "action",
+        "description": "Select the upcoming bookings tab"
+      },
+      {
+        "type": "action",
+        "description": "Tap a booking from the list"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify booking details are displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC016",
+    "title": "Start cancellation flow requires providing a reason",
+    "description": "Verifies that the cancel booking flow enforces entering a reason before confirmation.",
+    "category": "My Bookings",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /my-bookings"
+      },
+      {
+        "type": "action",
+        "description": "Select the upcoming bookings tab"
+      },
+      {
+        "type": "action",
+        "description": "Tap a booking from the list"
+      },
+      {
+        "type": "action",
+        "description": "Choose to cancel the booking"
+      },
+      {
+        "type": "action",
+        "description": "Attempt to confirm cancellation without providing a reason"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a cancellation reason validation error is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC017",
+    "title": "Cancel a booking with a valid reason",
+    "description": "Verifies that a passenger can cancel a booking by providing a reason and sees the booking marked as cancelled.",
+    "category": "My Bookings",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /my-bookings"
+      },
+      {
+        "type": "action",
+        "description": "Select the upcoming bookings tab"
+      },
+      {
+        "type": "action",
+        "description": "Tap a booking from the list"
+      },
+      {
+        "type": "action",
+        "description": "Choose to cancel the booking"
+      },
+      {
+        "type": "action",
+        "description": "Fill Cancelled due to changed plans into the cancellation reason field"
+      },
+      {
+        "type": "action",
+        "description": "Confirm cancellation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the booking status is updated to cancelled"
+      }
+    ]
+  },
+  {
+    "id": "TC018",
+    "title": "Restricted-window cancellation shows an error state",
+    "description": "Verifies that attempting to cancel a booking within the restricted window results in an error message and does not mark the booking cancelled.",
+    "category": "My Bookings",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /my-bookings"
+      },
+      {
+        "type": "action",
+        "description": "Select the upcoming bookings tab"
+      },
+      {
+        "type": "action",
+        "description": "Tap a booking from the list"
+      },
+      {
+        "type": "action",
+        "description": "Choose to cancel the booking"
+      },
+      {
+        "type": "action",
+        "description": "Fill Need to change plans into the cancellation reason field"
+      },
+      {
+        "type": "action",
+        "description": "Confirm cancellation"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a cancellation restriction error is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC019",
+    "title": "Open chat with driver from booking detail",
+    "description": "Verifies that a passenger can initiate chat with the driver from booking details and land on a chat screen.",
+    "category": "My Bookings",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /my-bookings"
+      },
+      {
+        "type": "action",
+        "description": "Select the upcoming bookings tab"
+      },
+      {
+        "type": "action",
+        "description": "Tap a booking from the list"
+      },
+      {
+        "type": "action",
+        "description": "Choose to chat with the driver"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the chat conversation view is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC020",
+    "title": "Load profile page and display primary profile content",
+    "description": "Verifies the profile page loads and shows core profile information such as stats and vehicle/verification sections.",
+    "category": "Profile Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /profile"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify profile stats are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify vehicle information and verification status are displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC021",
+    "title": "Edit profile name and save changes",
+    "description": "Verifies the user can navigate to edit profile, update their name, save, and see the updated name on the profile page.",
+    "category": "Profile Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /profile"
+      },
+      {
+        "type": "action",
+        "description": "Click the edit profile action"
+      },
+      {
+        "type": "action",
+        "description": "Fill New Test Name into the name field"
+      },
+      {
+        "type": "action",
+        "description": "Save profile changes"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /profile"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify New Test Name is displayed on the profile page"
+      }
+    ]
+  },
+  {
+    "id": "TC022",
+    "title": "Logout from profile",
+    "description": "Verifies the user can log out from the profile screen and is returned to an unauthenticated entry screen.",
+    "category": "Profile Management",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /profile"
+      },
+      {
+        "type": "action",
+        "description": "Click the logout action"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user lands on the welcome or login screen"
+      }
+    ]
+  },
+  {
+    "id": "TC023",
+    "title": "Update vehicle information in edit profile",
+    "description": "Verifies the user can update vehicle-related fields in edit profile and the updated values appear on the profile page.",
+    "category": "Profile Management",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /edit-profile"
+      },
+      {
+        "type": "action",
+        "description": "Fill Test Model X into the vehicle model field"
+      },
+      {
+        "type": "action",
+        "description": "Fill TEST-1234 into the vehicle plate field"
+      },
+      {
+        "type": "action",
+        "description": "Fill Blue into the vehicle color field"
+      },
+      {
+        "type": "action",
+        "description": "Save profile changes"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /profile"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify Test Model X is displayed in vehicle information"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify TEST-1234 is displayed in vehicle information"
+      }
+    ]
+  },
+  {
+    "id": "TC024",
+    "title": "Attempt to save edit profile with required fields cleared",
+    "description": "Verifies client-side validation prevents saving when required profile fields are missing.",
+    "category": "Profile Management",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /edit-profile"
+      },
+      {
+        "type": "action",
+        "description": "Clear the name field"
+      },
+      {
+        "type": "action",
+        "description": "Save profile changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a required field validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the profile changes are not saved"
+      }
+    ]
+  },
+  {
+    "id": "TC025",
+    "title": "Edit profile photo upload error handling (oversized/unsupported)",
+    "description": "Verifies an error is shown when attempting to upload an invalid profile photo (too large or unsupported type) and the save is blocked.",
+    "category": "Profile Management",
+    "priority": "Low",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /edit-profile"
+      },
+      {
+        "type": "action",
+        "description": "Upload an invalid profile photo (unsupported type or too large) into the profile photo field"
+      },
+      {
+        "type": "action",
+        "description": "Save profile changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an upload validation error with guidance is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the profile photo is not updated"
+      }
+    ]
+  },
+  {
+    "id": "TC026",
+    "title": "Load documents page and display verification status",
+    "description": "Verifies the documents page loads and shows the current document verification status and upload slots.",
+    "category": "Document Verification",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /documents"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify document upload sections for driving license and vehicle RC are displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the current verification status is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC027",
+    "title": "Submit documents for verification and see pending status",
+    "description": "Verifies the user can upload the required document photos and submit a verification request that results in a pending status in the UI.",
+    "category": "Document Verification",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /documents"
+      },
+      {
+        "type": "action",
+        "description": "Upload a valid driving license front photo"
+      },
+      {
+        "type": "action",
+        "description": "Upload a valid driving license back photo"
+      },
+      {
+        "type": "action",
+        "description": "Upload a valid vehicle RC photo"
+      },
+      {
+        "type": "action",
+        "description": "Submit for verification"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the verification status is pending"
+      }
+    ]
+  },
+  {
+    "id": "TC028",
+    "title": "Reject unsupported or too-large document upload",
+    "description": "Verifies the UI shows an error when uploading an unsupported file type or too-large document, without submitting.",
+    "category": "Document Verification",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /documents"
+      },
+      {
+        "type": "action",
+        "description": "Upload an invalid document file (unsupported type or too large) into one of the document upload fields"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a file validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify submission for verification is not allowed"
+      }
+    ]
+  },
+  {
+    "id": "TC029",
+    "title": "Prevent submission when required document photos are missing",
+    "description": "Verifies the user cannot submit for verification until all required document photos are provided.",
+    "category": "Document Verification",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /documents"
+      },
+      {
+        "type": "action",
+        "description": "Upload a valid driving license front photo"
+      },
+      {
+        "type": "action",
+        "description": "Submit for verification"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a missing required documents validation error is visible"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the verification status does not change to pending"
+      }
+    ]
+  },
+  {
+    "id": "TC030",
+    "title": "Load notifications page and display notification list with unread state",
+    "description": "Verifies the notifications page loads and shows a list of notifications with read/unread indicators.",
+    "category": "Notifications",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /notifications"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a list of notifications is displayed"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify unread/read status indicators are displayed for notifications"
+      }
+    ]
+  },
+  {
+    "id": "TC031",
+    "title": "Open a notification and mark it as read",
+    "description": "Verifies tapping a notification marks it as read and the unread count decreases if present.",
+    "category": "Notifications",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /notifications"
+      },
+      {
+        "type": "action",
+        "description": "Click a notification item that is currently unread"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected notification is marked as read"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the unread count decreases or the unread badge is reduced"
+      }
+    ]
+  },
+  {
+    "id": "TC032",
+    "title": "Clear all notifications from the feed",
+    "description": "Verifies the user can clear all notifications and sees an empty state afterwards.",
+    "category": "Notifications",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /notifications"
+      },
+      {
+        "type": "action",
+        "description": "Click the clear all notifications action"
+      },
+      {
+        "type": "action",
+        "description": "Confirm the clear action if a confirmation prompt is shown in-app"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify an empty state message is visible for notifications"
+      }
+    ]
+  },
+  {
+    "id": "TC033",
+    "title": "Admin dashboard loads for an admin user",
+    "description": "Verifies an authenticated admin can access the admin dashboard and see core stats/panels.",
+    "category": "Admin Dashboard",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify admin dashboard stats are displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC034",
+    "title": "Non-admin user cannot access admin dashboard",
+    "description": "Verifies a logged-in non-admin user is blocked from the admin area via access denied or redirect.",
+    "category": "Admin Dashboard",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the user is redirected away from the admin area or shown an access denied state"
+      }
+    ]
+  },
+  {
+    "id": "TC035",
+    "title": "Admin can navigate to Users management and view user list",
+    "description": "Verifies the admin can open the users management screen and see a list of users.",
+    "category": "Admin Dashboard",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/users"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a users list or table is displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC036",
+    "title": "Admin can search/filter users",
+    "description": "Verifies searching users updates the visible results on the Users screen.",
+    "category": "Admin Dashboard",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/users"
+      },
+      {
+        "type": "action",
+        "description": "Fill \"test\" into the user search field"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the users list updates to reflect the search criteria"
+      }
+    ]
+  },
+  {
+    "id": "TC037",
+    "title": "Admin can ban a user from the users list",
+    "description": "Verifies an admin can ban a user and the UI reflects the updated user status.",
+    "category": "Admin Dashboard",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/users"
+      },
+      {
+        "type": "action",
+        "description": "Select a user from the users list"
+      },
+      {
+        "type": "action",
+        "description": "Trigger the ban action for the selected user"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected user shows a banned status or the ban action is no longer available"
+      }
+    ]
+  },
+  {
+    "id": "TC038",
+    "title": "Admin can unban a user from the users list",
+    "description": "Verifies an admin can unban a user and the UI reflects the updated user status.",
+    "category": "Admin Dashboard",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/users"
+      },
+      {
+        "type": "action",
+        "description": "Select a banned user from the users list"
+      },
+      {
+        "type": "action",
+        "description": "Trigger the unban action for the selected user"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the selected user shows an unbanned status or the ban action is available again"
+      }
+    ]
+  },
+  {
+    "id": "TC039",
+    "title": "Admin documents screen loads and pending documents are visible",
+    "description": "Verifies the admin can open the document verification screen and see pending items or an empty state.",
+    "category": "Admin Dashboard",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/documents"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a pending documents list is displayed or an empty state is visible"
+      }
+    ]
+  },
+  {
+    "id": "TC040",
+    "title": "Admin can approve a pending document (UI confirmation)",
+    "description": "Verifies the admin can open a pending document and approve it with a visible success outcome.",
+    "category": "Admin Dashboard",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/documents"
+      },
+      {
+        "type": "action",
+        "description": "Open a pending document item from the list"
+      },
+      {
+        "type": "action",
+        "description": "Approve the document"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify a success confirmation is visible or the document status is updated in the UI"
+      }
+    ]
+  },
+  {
+    "id": "TC041",
+    "title": "Admin can view SOS monitoring screen and resolve an alert when available",
+    "description": "Verifies the SOS monitoring page loads and allows resolving an alert if one is present, otherwise shows an empty state.",
+    "category": "Admin Dashboard",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/sos"
+      },
+      {
+        "type": "action",
+        "description": "If an active SOS alert is present, open it and resolve it"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the SOS screen shows either no active alerts or that the resolved alert is no longer in the active list"
+      }
+    ]
+  },
+  {
+    "id": "TC042",
+    "title": "Admin can open rides moderation screen and force cancel a ride when available",
+    "description": "Verifies the rides management page loads and supports force-cancel if a ride is listed, otherwise shows an empty state.",
+    "category": "Admin Dashboard",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to /login"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the email field with {{LOGIN_USER}}"
+      },
+      {
+        "type": "action",
+        "description": "Fill in the password field with {{LOGIN_PASSWORD}}"
+      },
+      {
+        "type": "action",
+        "description": "Submit the login form"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to /admin/rides"
+      },
+      {
+        "type": "action",
+        "description": "If a ride is present, open it and trigger the force cancel action"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the rides list reflects the cancellation or shows no active rides for that entry"
+      }
+    ]
+  }
+]

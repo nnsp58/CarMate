@@ -1,0 +1,59 @@
+version: "2"
+type: frontend
+tech_stack:
+  - dart
+  - flutter
+  - flutter_map
+  - supabase_flutter
+routes:
+  - path: /
+    file: lib/main.dart
+    auth_required: false
+    description: Initial splash and auth routing
+  - path: /login
+    file: lib/screens/login_screen.dart
+    auth_required: false
+    description: User login screen
+  - path: /register
+    file: lib/screens/register_screen.dart
+    auth_required: false
+    description: User registration screen
+  - path: /home
+    file: lib/screens/home_screen.dart
+    auth_required: true
+    description: Main user dashboard
+  - path: /publish-ride
+    file: lib/screens/publish_ride_screen.dart
+    auth_required: true
+    description: Screen for publishing a new ride
+  - path: /search-ride
+    file: lib/screens/search_ride_screen.dart
+    auth_required: true
+    description: Screen for searching available rides
+features:
+  - name: Authentication
+    description: Login, Register, Logout functionality
+    files:
+      - lib/screens/login_screen.dart
+      - lib/screens/register_screen.dart
+      - lib/services/auth_service.dart
+    entry_route: /login
+    user_interactions:
+      - Enter credentials
+      - Proceed to dashboard or show error
+    api_calls:
+      - method: POST
+        endpoint: supabase_auth
+  - name: Publish Ride
+    description: Users can offer carpooling rides
+    files:
+      - lib/screens/publish_ride_screen.dart
+      - lib/services/ride_service.dart
+    entry_route: /publish-ride
+    user_interactions:
+      - Select origin, destination, seats, price
+      - Confirm publish
+    api_calls:
+      - method: POST
+        endpoint: insert_ride
+known_limitations: []

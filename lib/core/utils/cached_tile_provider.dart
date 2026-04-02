@@ -1,0 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_map/flutter_map.dart';
+
+class CachedTileProvider extends TileProvider {
+  CachedTileProvider();
+
+  @override
+  ImageProvider getImage(TileCoordinates coordinates, TileLayer options) {
+    // getTileUrl is inherited from TileProvider
+    final url = getTileUrl(coordinates, options);
+    return CachedNetworkImageProvider(url);
+  }
+}

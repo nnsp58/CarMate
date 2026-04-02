@@ -1,0 +1,18 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:5173",
+  "executionArgs": {
+    "projectName": "rideon",
+    "projectPath": "d:/rideon-1/rideon",
+    "testIds": [],
+    "additionalInstruction": "RideOn is a Flutter-based carpooling app using Supabase backend and OpenStreetMap.\nUsers can:- Signup/Login via OTP- Search rides- Book seats- Cancel bookings- Chat- Trigger SOS alerts\nTest Scenarios:\n1. Authentication:\nSignup, login, logout, wrong OTP\n2. Ride Search:\nLocation search, GPS autofill, date selection\n3. Booking:\nOpen ride, select seats, confirm booking\n4. Cancel:\nCancel booking with reason\n5. Publish Ride:\nCreate and publish ride\n6. Chat:\nSend/receive messages\n7. SOS:\nTrigger and cancel SOS\nRepeat each flow 100–500 times with random inputs.\nStress Testing:- Rapid tap buttons (1000 times)- Multiple users booking same ride- Network ON/OFF switching- Background/foreground switching\nFail Conditions:- App crash- Duplicate booking- API/data mismatch- UI freeze > 3 seconds- SOS failure\nTrack API response time and log all failed requests.",
+    "serverMode": "development",
+    "envs": {
+      "API_KEY": "sk-user-XZfxWk9f4-66wLTe6fUXX6qRLGv44Zwh0Cn7SpXNh6EOaAp6RakRDpIWgh4-9QJIHuy6S5mVIDBkf-cbkAcnO5_XyojDAbDy8sPjv18i2AndyhRnmAMfpHFUZ8vYUdPp30k"
+    }
+  },
+  "serverPort": 51258,
+  "proxy": "http://7e626e5a-746c-4692-a755-9a4c17d34d5a:cG0K8nCp0sCnwe7hOa4wfsnAd6Ch9tJf@tun.testsprite.com:8080"
+}
