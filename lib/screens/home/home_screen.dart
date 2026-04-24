@@ -43,10 +43,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
       if (permission == LocationPermission.deniedForever) return;
 
-      final position = await Geolocator.getCurrentPosition().timeout(const Duration(seconds: 5));
-      if (mounted) {
+      Position? position;
+      try {
+        position = await Geolocator.getCurrentPosition(
+          locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
+        ).timeout(const Duration(seconds: 10));
+      } catch (_) {
+        position = await Geolocator.getLastKnownPosition();
+      }
+
+      if (position != null && mounted) {
         setState(() {
-          _currentPosition = LatLng(position.latitude, position.longitude);
+          _currentPosition = LatLng(position!.latitude, position.longitude);
         });
         
         // Auto-move only once on startup

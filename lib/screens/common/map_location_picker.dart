@@ -72,16 +72,20 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
         return;
       }
 
-      // Get current position with timeout
-      final position = await Geolocator.getCurrentPosition(
-        locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
-      ).timeout(
-        const Duration(seconds: 10),
-        onTimeout: () => throw Exception('GPS timeout'),
-      );
+      // Get current position with timeout, fallback to last known
+      Position? position;
+      try {
+        position = await Geolocator.getCurrentPosition(
+          locationSettings: const LocationSettings(accuracy: LocationAccuracy.high),
+        ).timeout(const Duration(seconds: 10));
+      } catch (_) {
+        position = await Geolocator.getLastKnownPosition();
+      }
 
-      resolvedPosition = LatLng(position.latitude, position.longitude);
-      _userGpsLocation = resolvedPosition;
+      if (position != null) {
+        resolvedPosition = LatLng(position.latitude, position.longitude);
+        _userGpsLocation = resolvedPosition;
+      }
     } catch (e) {
       debugPrint('GPS Error: $e');
     }

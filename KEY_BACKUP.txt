@@ -1,0 +1,14 @@
+RideOn Android Signing Key Details
+==================================
+
+Keystore File Path: android/app/rideon-release.keystore
+Alias: rideon
+Store Password: rideon2024
+Key Password: rideon2024
+
+IMPORTANT: 
+1. DO NOT DELETE the 'android/app/rideon-release.keystore' file.
+2. If you lose this file, you cannot update the app without asking users to uninstall it first.
+3. Keep this file and these passwords safe!
+
+Created on: 24 April 2026

@@ -65,10 +65,15 @@ class RidePassengersScreen extends ConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          DateFormat('EEEE, MMM d • hh:mm a').format(ride.departureDatetime),
-                          style: TextStyle(color: Colors.grey[700]),
+                        Expanded(
+                          child: Text(
+                            DateFormat('EEEE, MMM d • hh:mm a').format(ride.departureDatetime),
+                            style: TextStyle(color: Colors.grey[700]),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
                         ),
+                        const SizedBox(width: 8),
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                           decoration: BoxDecoration(
