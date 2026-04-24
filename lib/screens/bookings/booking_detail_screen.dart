@@ -306,7 +306,42 @@ class _BookingDetailScreenState extends ConsumerState<BookingDetailScreen> {
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (err, stack) => Center(child: Text('Error: $err')),
       ),
+      floatingActionButton: bookingAsync.maybeWhen(
+        data: (booking) {
+          if (booking == null || booking.status == 'cancelled') return null;
+          return FloatingActionButton.extended(
+            onPressed: () => _handleChat(ref, booking),
+            label: const Text('Chat with Driver'),
+            icon: const Icon(Icons.chat_bubble_outline),
+            backgroundColor: AppColors.primary,
+            foregroundColor: Colors.white,
+          );
+        },
+        orElse: () => null,
+      ),
     );
+  }
+
+  Future<void> _handleChat(WidgetRef ref, BookingModel booking) async {
+    final user = ref.read(currentUserProvider).value;
+    if (user == null) return;
+
+    try {
+      final chatId = await ref.read(chatActionsProvider).getOrCreateChat(
+            otherUserId: user.id == booking.passengerId ? booking.driverId : booking.passengerId,
+            rideId: booking.rideId,
+            bookingId: booking.id,
+          );
+      if (mounted) {
+        context.push('/chat/$chatId');
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Could not start chat: $e')),
+        );
+      }
+    }
   }
 
   Widget _buildStatusBanner(String status) {

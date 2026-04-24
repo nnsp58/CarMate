@@ -26,16 +26,24 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     super.dispose();
   }
 
-  void _sendMessage() {
+  void _sendMessage() async {
     final text = _messageController.text.trim();
     if (text.isEmpty) return;
 
-    ref.read(chatActionsProvider).sendMessage(
-          chatId: widget.chatId,
-          text: text,
+    try {
+      await ref.read(chatActionsProvider).sendMessage(
+            chatId: widget.chatId,
+            text: text,
+          );
+      _messageController.clear();
+      _scrollToBottom();
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to send: $e')),
         );
-    _messageController.clear();
-    _scrollToBottom();
+      }
+    }
   }
 
   void _scrollToBottom() {
