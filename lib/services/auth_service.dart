@@ -1,4 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:firebase_auth/firebase_auth.dart' as fb;
 import '../models/user_model.dart';
 import 'supabase_service.dart';
 
@@ -66,7 +67,7 @@ class AuthService {
     }
   }
 
-  /// Verify OTP
+  /// Verify OTP (Supabase Original)
   static Future<AuthResponse> verifyOTP({
     required String phone,
     required String token,
@@ -95,6 +96,92 @@ class AuthService {
       }
 
       return response;
+    } catch (e) {
+      throw Exception('OTP verification failed: $e');
+    }
+  }
+
+  // --- Firebase Phone Auth Integration ---
+  static String? _verificationId;
+
+  /// Send OTP to phone number using Firebase
+  static Future<void> sendOTPFirebase({
+    required String phone,
+    required Function(String) onCodeSent,
+    required Function(String) onError,
+  }) async {
+    try {
+      await fb.FirebaseAuth.instance.verifyPhoneNumber(
+        phoneNumber: phone,
+        verificationCompleted: (fb.PhoneAuthCredential credential) async {
+          // Auto-resolution handling can be added here
+        },
+        verificationFailed: (fb.FirebaseAuthException e) {
+          onError(e.message ?? 'Verification failed');
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          _verificationId = verificationId;
+          onCodeSent(verificationId);
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          _verificationId = verificationId;
+        },
+      );
+    } catch (e) {
+      throw Exception('Failed to send OTP via Firebase: $e');
+    }
+  }
+
+  /// Verify OTP using Firebase and authenticate with Supabase
+  static Future<AuthResponse> verifyOTPFirebase({
+    required String phone,
+    required String token,
+  }) async {
+    if (_verificationId == null) throw Exception('Please request OTP first');
+    try {
+      // 1. Verify OTP with Firebase
+      final credential = fb.PhoneAuthProvider.credential(
+        verificationId: _verificationId!,
+        smsCode: token,
+      );
+      await fb.FirebaseAuth.instance.signInWithCredential(credential);
+
+      // 2. Link/Login to Supabase using generated credentials
+      final cleanPhone = phone.replaceAll('+', '');
+      final fakeEmail = '$cleanPhone@rideon-auth.com';
+      final fakePassword = 'RideOnAuth\$$cleanPhone';
+
+      try {
+        // Try sign in
+        final response = await SupabaseService.client.auth.signInWithPassword(
+          email: fakeEmail,
+          password: fakePassword,
+        );
+        return response;
+      } on AuthException catch (_) {
+        // If sign in fails, try sign up
+        final response = await SupabaseService.client.auth.signUp(
+          email: fakeEmail,
+          password: fakePassword,
+        );
+
+        if (response.user != null) {
+          // Check if user exists in DB first
+          final existingUser = await SupabaseService.client
+              .from('users')
+              .select()
+              .eq('id', response.user!.id)
+              .maybeSingle();
+
+          if (existingUser == null) {
+            await SupabaseService.client.from('users').insert({
+              'id': response.user!.id,
+              'phone': phone,
+            });
+          }
+        }
+        return response;
+      }
     } catch (e) {
       throw Exception('OTP verification failed: $e');
     }

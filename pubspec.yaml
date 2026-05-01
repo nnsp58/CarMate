@@ -56,6 +56,8 @@ dependencies:
   package_info_plus: ^9.0.1
   flutter_map_cancellable_tile_provider: ^3.0.2
   flutter_map_cache: ^2.0.0+1
+  firebase_core: ^4.7.0
+  firebase_auth: ^6.4.0
 
 
 dev_dependencies:

@@ -104,26 +104,42 @@ class _OTPScreenState extends ConsumerState<OTPScreen> {
   Future<void> _resendOTP() async {
     if (_resendCountdown > 0) return;
 
+    setState(() => _isLoading = true);
+
     try {
       final authActions = ref.read(authActionsProvider);
-      await authActions.signInWithOTP(phone: widget.phoneNumber);
-
-      // Countdown dobara shuru karo
-      _startResendCountdown();
-
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('OTP sent successfully!'),
-            backgroundColor: AppColors.success,
-          ),
-        );
-      }
+      await authActions.signInWithOTP(
+        phone: widget.phoneNumber,
+        onCodeSent: (verificationId) {
+          if (mounted) {
+            setState(() => _isLoading = false);
+            _startResendCountdown();
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('OTP sent successfully!'),
+                backgroundColor: AppColors.success,
+              ),
+            );
+          }
+        },
+        onError: (error) {
+          if (mounted) {
+            setState(() => _isLoading = false);
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Failed to resend OTP: $error'),
+                backgroundColor: AppColors.error,
+              ),
+            );
+          }
+        }
+      );
     } catch (e) {
       if (mounted) {
+        setState(() => _isLoading = false);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to resend OTP: ${e.toString()}'),
+            content: Text('Failed to request OTP: ${e.toString()}'),
             backgroundColor: AppColors.error,
           ),
         );

@@ -255,14 +255,36 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                     Expanded(
                       child: OutlinedButton.icon(
                         onPressed: _isLoading ? null : () {
-                          // For now, if phone is empty, show a dialog or just pass empty
-                          if (_emailController.text.contains('+')) {
-                             // Heuristic: maybe they typed phone in email field?
-                             context.go('/otp', extra: _emailController.text.trim());
-                          } else {
-                             // Normally we'd have a phone field
-                             context.go('/otp', extra: _phoneController.text.trim());
+                          String phone = _phoneController.text.trim();
+                          if (phone.isEmpty && _emailController.text.contains('+')) {
+                              phone = _emailController.text.trim();
                           }
+                          
+                          if (phone.isEmpty || !phone.startsWith('+')) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text('Please enter a valid phone number with country code (e.g. +91)', style: TextStyle(color: Colors.white)), backgroundColor: AppColors.error),
+                              );
+                              return;
+                          }
+
+                          setState(() => _isLoading = true);
+                          ref.read(authActionsProvider).signInWithOTP(
+                            phone: phone,
+                            onCodeSent: (verificationId) {
+                              if (mounted) {
+                                setState(() => _isLoading = false);
+                                context.go('/otp', extra: phone);
+                              }
+                            },
+                            onError: (error) {
+                              if (mounted) {
+                                setState(() => _isLoading = false);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('Verification Failed: $error'), backgroundColor: AppColors.error),
+                                );
+                              }
+                            }
+                          );
                         },
                         icon: const Icon(Icons.phone),
                         label: const Text('Phone'),

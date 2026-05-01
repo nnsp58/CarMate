@@ -60,15 +60,21 @@ class AuthActions {
 
   Future<void> signInWithOTP({
     required String phone,
+    required Function(String) onCodeSent,
+    required Function(String) onError,
   }) async {
-    await AuthService.sendOTP(phone: phone);
+    await AuthService.sendOTPFirebase(
+      phone: phone,
+      onCodeSent: onCodeSent,
+      onError: onError,
+    );
   }
 
   Future<void> verifyOTP({
     required String phone,
     required String token,
   }) async {
-    await AuthService.verifyOTP(phone: phone, token: token);
+    await AuthService.verifyOTPFirebase(phone: phone, token: token);
   }
 
   Future<void> resetPassword({

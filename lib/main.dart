@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:onesignal_flutter/onesignal_flutter.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'app.dart';
 import 'services/supabase_service.dart';
 
@@ -14,6 +15,13 @@ void main() async {
   
   // Load environment variables
   await dotenv.load(fileName: ".env");
+
+  // Initialize Firebase for Phone Auth
+  try {
+    await Firebase.initializeApp();
+  } catch (e) {
+    debugPrint('Firebase init error: $e');
+  }
 
   // OneSignal Initialization (Disable for Web)
   if (!kIsWeb) {
