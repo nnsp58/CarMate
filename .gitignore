@@ -50,6 +50,8 @@ app.*.map.json
 # Environment Variables
 .env
 .env.*
+google-services.json
+ride-together-app-76084-firebase-adminsdk-fbsvc-c43ec0cdc0.json
 
 # From user instructions
 node_modules/
