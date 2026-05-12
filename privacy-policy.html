@@ -4,36 +4,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy - CarMate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
-        h1 { color: #2e7d32; }
-        h2 { color: #388e3c; border-bottom: 1px solid #eee; padding-bottom: 5px; }
-        .footer { margin-top: 40px; font-size: 0.9em; color: #777; }
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --text: #374151;
+            --bg: #f9fafb;
+        }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            line-height: 1.7; 
+            color: var(--text); 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 40px 20px;
+            background-color: var(--bg);
+        }
+        .container {
+            background: white;
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        h1 { 
+            color: var(--primary); 
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .update-date {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            display: block;
+        }
+        h2 { 
+            color: var(--primary); 
+            border-bottom: 2px solid #e5e7eb; 
+            padding-bottom: 8px; 
+            margin-top: 2.5rem;
+            font-weight: 600;
+        }
+        p, ul {
+            margin-bottom: 1.2rem;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .highlight {
+            background: #f0fdf4;
+            border-left: 4px solid var(--primary-light);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        .footer { 
+            margin-top: 50px; 
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+            font-size: 0.95em; 
+            color: #6b7280; 
+            text-align: center;
+        }
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
-    <h1>Privacy Policy for CarMate</h1>
-    <p>Last updated: May 04, 2026</p>
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <span class="update-date">Last updated: May 13, 2026</span>
 
-    <p>CarMate ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by CarMate.</p>
+        <p>CarMate ("we", "our", or "us") respects your privacy and is committed to protecting the personal data of our users. This Privacy Policy outlines how we collect, use, and safeguard your information when you use the CarMate mobile application.</p>
 
-    <h2>1. Information We Collect</h2>
-    <p>We collect information that you provide directly to us, including your name, email address, phone number, and location data when you use the app for carpooling services.</p>
+        <div class="highlight">
+            <strong>Legal Compliance:</strong> CarMate operates as an intermediary under Section 79 of the Information Technology Act, facilitating private cost-sharing arrangements for fuel and tolls.
+        </div>
 
-    <h2>2. Use of Information</h2>
-    <p>We use the information we collect to provide, maintain, and improve our services, including ride matching, GPS tracking, and safety features like the SOS emergency system.</p>
+        <h2>1. Information We Collect</h2>
+        <p>To provide a safe and efficient ride-sharing experience, we collect the following types of information:</p>
+        <ul>
+            <li><strong>Personal Identity:</strong> Name, email address, phone number, and profile picture.</li>
+            <li><strong>Verification Documents:</strong> Government IDs (DL/RC) for driver verification (stored securely and processed manually by admins).</li>
+            <li><strong>Location Data:</strong> Real-time GPS coordinates to enable ride matching, live tracking, and SOS features. This is essential for the core functionality of the app.</li>
+            <li><strong>Device Information:</strong> Device model, OS version, and unique device identifiers for push notifications.</li>
+        </ul>
 
-    <h2>3. Data Sharing</h2>
-    <p>We do not share your personal data with third parties except as necessary to provide the carpooling service or as required by law (e.g., IT Act Section 79 compliance).</p>
+        <h2>2. How We Use Your Information</h2>
+        <p>Your data is used solely for the following purposes:</p>
+        <ul>
+            <li><strong>Ride Matching:</strong> Connecting drivers and passengers based on location and route.</li>
+            <li><strong>Safety & Security:</strong> Facilitating the SOS emergency system and verifying user identities.</li>
+            <li><strong>Communication:</strong> Enabling in-app chat between ride participants.</li>
+            <li><strong>Notifications:</strong> Sending ride updates, booking confirmations, and safety alerts via OneSignal.</li>
+        </ul>
 
-    <h2>4. Data Deletion</h2>
-    <p>Users can request the deletion of their account and associated data at any time by contacting us at support@rideon.app or through the app settings.</p>
+        <h2>3. Data Storage and Security</h2>
+        <p>We use <strong>Supabase</strong> (PostgreSQL) for secure data storage. All communications between the app and our servers are encrypted using Industry Standard SSL/TLS protocols. Verification documents are stored in private storage buckets accessible only to authorized administrators.</p>
 
-    <h2>5. Security</h2>
-    <p>We implement a variety of security measures to maintain the safety of your personal information. All data is encrypted in transit.</p>
+        <h2>4. Location Permissions</h2>
+        <p>CarMate requires access to your location even when the app is in the background during an active ride to ensure passenger safety and accurate live tracking. You can manage these permissions in your device settings.</p>
 
-    <div class="footer">
-        <p>Contact us: support@rideon.app | https://ridon.app</p>
+        <h2>5. Third-Party Services</h2>
+        <p>We share limited data with the following services to provide our core features:</p>
+        <ul>
+            <li><strong>OneSignal:</strong> For delivering push notifications.</li>
+            <li><strong>Supabase:</strong> For backend database and authentication services.</li>
+            <li><strong>OpenStreetMap/OSRM:</strong> For mapping and routing (no personal data shared).</li>
+        </ul>
+
+        <h2>6. Data Deletion & Rights</h2>
+        <p>You have the right to access, correct, or delete your personal data. You can request account deletion directly through the app settings or by emailing us. Upon request, all personal data will be permanently removed from our active databases within 30 days.</p>
+
+        <h2>7. Contact Us</h2>
+        <p>If you have any questions about this Privacy Policy or our data practices, please contact us at:</p>
+        <div class="highlight">
+            Email: <a href="mailto:support@rideon.app">support@rideon.app</a><br>
+            Website: <a href="https://ridon.app" target="_blank">https://ridon.app</a>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 CarMate. All rights reserved.</p>
+        </div>
     </div>
 </body>
 </html>
